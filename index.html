@@ -36,6 +36,8 @@
 --hake-violet:#b06bff;
 --ending-gray:#8888a0;
 --ending-dark:#1a1a24;
+--sumimasen-purple:#8a2be2;
+--sumimasen-soft:#b794f6;
 --shadow:0 8px 32px rgba(0,0,0,.5);
 --radius:16px;
 }
@@ -86,8 +88,10 @@ overflow:hidden;cursor:pointer;transition:transform .25s,box-shadow .25s;box-sha
 .badge-append{background:linear-gradient(135deg,var(--haru-magenta),var(--haru-pink));color:#fff;box-shadow:0 2px 12px rgba(232,67,147,.45);}
 .badge-hake{background:linear-gradient(135deg,var(--hake-violet),var(--hake-pink));color:#fff;box-shadow:0 2px 12px rgba(176,107,255,.45);}
 .badge-removed{background:linear-gradient(135deg,#555,#888);color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.4);}
+.badge-sumimasen{background:linear-gradient(135deg,var(--sumimasen-purple),#5a1fa8);color:#fff;box-shadow:0 2px 14px rgba(138,43,226,.5);animation:pulseSumi 2.5s infinite;}
 @keyframes pulse{0%,100%{box-shadow:0 2px 10px rgba(255,31,75,.4);}50%{box-shadow:0 2px 18px rgba(255,122,0,.7);}}
 @keyframes pulseNew{0%,100%{box-shadow:0 2px 12px rgba(255,216,107,.45);}50%{box-shadow:0 2px 22px rgba(255,255,255,.85);}}
+@keyframes pulseSumi{0%,100%{box-shadow:0 2px 14px rgba(138,43,226,.4);}50%{box-shadow:0 2px 24px rgba(138,43,226,.8);}}
 .card-stats{display:flex;gap:5px;flex-wrap:wrap;}
 .stat-pill{padding:4px 9px;border-radius:20px;font-size:.65rem;font-weight:600;border:1px solid;}
 .tap-hint{text-align:center;padding:9px;font-size:.65rem;color:var(--text-dim);border-top:1px solid var(--card-border);opacity:.45;}
@@ -207,6 +211,16 @@ repeating-radial-gradient(circle at 50% 120%,rgba(255,255,255,.03) 0 2px,transpa
 .card.ending .stat-pill:nth-child(1){background:rgba(150,150,170,.1);color:#bbb;border-color:rgba(150,150,170,.25);}
 .card.ending .stat-pill:nth-child(2){background:rgba(255,107,157,.1);color:var(--even-pink);border-color:rgba(255,107,157,.2);}
 .card.ending .stat-pill:nth-child(3){background:rgba(78,205,196,.1);color:var(--accent);border-color:rgba(78,205,196,.2);}
+/* ═══ 第16首 すみません 样式 ═══ */
+.card.sumimasen:hover{box-shadow:0 12px 52px rgba(138,43,226,.28);border-color:var(--sumimasen-purple);}
+.card.sumimasen .card-cover{background:linear-gradient(135deg,#0f0a1e,#1a1040,#0a0815);}
+.card.sumimasen .card-cover::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(138,43,226,.14) 0%,transparent 60%),repeating-linear-gradient(60deg,transparent 0 22px,rgba(183,148,246,.04) 22px 44px);}
+.card.sumimasen .jp-title{color:var(--sumimasen-soft);text-shadow:0 0 16px rgba(138,43,226,.5);}
+.card.sumimasen .cn-title{color:var(--sumimasen-purple);}
+.card.sumimasen .voice-tag{border:1px solid var(--sumimasen-purple);color:var(--sumimasen-soft);}
+.card.sumimasen .stat-pill:nth-child(1){background:rgba(138,43,226,.12);color:var(--sumimasen-soft);border-color:rgba(138,43,226,.25);}
+.card.sumimasen .stat-pill:nth-child(2){background:rgba(247,201,72,.1);color:var(--accent-warm);border-color:rgba(247,201,72,.2);}
+.card.sumimasen .stat-pill:nth-child(3){background:rgba(255,59,92,.1);color:var(--send-red);border-color:rgba(255,59,92,.2);}
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.84);backdrop-filter:blur(8px);z-index:100;
 display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;
 opacity:0;pointer-events:none;transition:opacity .3s;}
@@ -222,7 +236,7 @@ transform:translateY(20px) scale(.97);transition:transform .3s;}
 border:1px solid var(--card-border);background:transparent;color:var(--text-dim);font-size:1rem;cursor:pointer;
 display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .modal-close:hover{background:rgba(255,255,255,.05);color:var(--text);}
-.human-flag,.custom-flag,.cover-flag,.new-flag,.tall-flag,.append-flag,.hake-flag,.ending-flag{display:inline-block;margin-left:8px;font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:20px;vertical-align:middle;}
+.human-flag,.custom-flag,.cover-flag,.new-flag,.tall-flag,.append-flag,.hake-flag,.ending-flag,.sumimasen-flag{display:inline-block;margin-left:8px;font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:20px;vertical-align:middle;}
 .human-flag{background:rgba(157,123,255,.14);color:var(--wds-violet);border:1px solid rgba(157,123,255,.3);}
 .custom-flag{background:rgba(0,212,255,.14);color:var(--snooze-cyan);border:1px solid rgba(0,212,255,.3);}
 .cover-flag{background:rgba(78,205,196,.14);color:var(--accent);border:1px solid rgba(78,205,196,.3);}
@@ -231,7 +245,8 @@ display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .append-flag{background:linear-gradient(135deg,var(--haru-magenta),var(--haru-pink));color:#fff;border:1px solid rgba(232,67,147,.5);}
 .hake-flag{background:linear-gradient(135deg,var(--hake-violet),var(--hake-pink));color:#fff;border:1px solid rgba(176,107,255,.5);}
 .ending-flag{background:linear-gradient(135deg,#888,#555);color:#fff;border:1px solid rgba(136,136,136,.5);}
-.extreme-tag,.dance-tag,.official-tag,.cover-tag,.new-tag,.tall-tag,.append-tag,.hake-tag,.removed-tag{display:inline-block;margin:0 22px 12px;padding:6px 14px;border-radius:20px;font-size:.66rem;font-weight:700;letter-spacing:.03em;}
+.sumimasen-flag{background:linear-gradient(135deg,var(--sumimasen-purple),var(--sumimasen-soft));color:#fff;border:1px solid rgba(138,43,226,.5);}
+.extreme-tag,.dance-tag,.official-tag,.cover-tag,.new-tag,.tall-tag,.append-tag,.hake-tag,.removed-tag,.sumimasen-tag{display:inline-block;margin:0 22px 12px;padding:6px 14px;border-radius:20px;font-size:.66rem;font-weight:700;letter-spacing:.03em;}
 .extreme-tag{background:linear-gradient(135deg,var(--send-crimson),#ff7a00);color:#fff;box-shadow:0 2px 12px rgba(255,31,75,.35);}
 .dance-tag{background:linear-gradient(135deg,#ffd700,#ff6b35);color:#000;box-shadow:0 2px 12px rgba(255,215,0,.35);}
 .official-tag{background:linear-gradient(135deg,var(--snooze-violet),var(--snooze-cyan));color:#fff;box-shadow:0 2px 12px rgba(0,212,255,.3);}
@@ -241,6 +256,7 @@ display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .append-tag{background:linear-gradient(135deg,var(--haru-magenta),var(--haru-pink));color:#fff;box-shadow:0 2px 14px rgba(232,67,147,.4);}
 .hake-tag{background:linear-gradient(135deg,var(--hake-violet),var(--hake-pink));color:#fff;box-shadow:0 2px 14px rgba(176,107,255,.4);}
 .removed-tag{background:linear-gradient(135deg,#555,#888);color:#fff;box-shadow:0 2px 12px rgba(0,0,0,.3);}
+.sumimasen-tag{background:linear-gradient(135deg,var(--sumimasen-purple),var(--sumimasen-soft));color:#fff;box-shadow:0 2px 14px rgba(138,43,226,.4);}
 .wds-tag{display:inline-block;margin:0 22px 12px;padding:6px 14px;border-radius:20px;font-size:.66rem;font-weight:700;
 background:linear-gradient(135deg,var(--wds-violet),var(--wds-cyan));color:#0a0d14;letter-spacing:.03em;}
 .translation-block{margin:14px 22px;padding:14px;border-radius:12px;border:1px solid;}
@@ -279,9 +295,21 @@ background:linear-gradient(135deg,var(--wds-violet),var(--wds-cyan));color:#0a0d
 .translation-block.ending-tl{background:linear-gradient(135deg,rgba(136,136,160,.1),rgba(200,200,220,.04));border-color:rgba(136,136,160,.3);}
 .translation-block.ending-tl .label{color:var(--ending-gray);}
 .translation-block.ending-tl .cn-text{color:#c8c8d8;}
+.translation-block.sumimasen-tl{background:linear-gradient(135deg,rgba(138,43,226,.1),rgba(183,148,246,.04));border-color:rgba(138,43,226,.3);}
+.translation-block.sumimasen-tl .label{color:var(--sumimasen-purple);}
+.translation-block.sumimasen-tl .cn-text{color:var(--sumimasen-soft);}
 .incident-block{margin:14px 22px;padding:14px;border-radius:12px;border:1px solid rgba(255,80,80,.3);background:linear-gradient(135deg,rgba(255,60,60,.08),rgba(0,0,0,.04));}
 .incident-block .label{font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:#ff7a7a;margin-bottom:6px;}
 .incident-block .incident-text{font-size:.74rem;line-height:1.6;color:#d8c8c8;}
+.lyrics-link{
+display:inline-flex;align-items:center;gap:.4rem;
+padding:.5rem .9rem;margin-top:.3rem;
+background:rgba(138,43,226,.18);
+border:1px solid rgba(138,43,226,.5);
+border-radius:8px;color:#d9c2ff;font-size:.85rem;
+text-decoration:none;transition:background .2s,transform .1s;
+}
+.lyrics-link:hover{background:rgba(138,43,226,.32);transform:translateY(-1px);}
 .modal-section{padding:14px 22px;border-bottom:1px solid var(--card-border);}
 .modal-section:last-child{border-bottom:none;}
 .modal-section h3{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin-bottom:8px;}
@@ -310,7 +338,7 @@ background:linear-gradient(135deg,var(--wds-violet),var(--wds-cyan));color:#0a0d
 <div class="page-header">
 <h1>轴音旋律 · 歌曲信息保管站</h1>
 <p>Even 是三天炸开的星，etta 是被时间慢慢展开的焰</p>
-<div class="count-badge">收录 15 首 · 原生 12 · 联动 2 · 自制 1 · 离线可查</div>
+<div class="count-badge">收录 16 首 · 原生 13 · 联动 2 · 自制 1 · 离线可查</div>
 </div>
 <div class="filterbar">
 <button class="filterbtn active" data-f="all" onclick="filterBy(this,'all')">全部</button>
@@ -571,6 +599,27 @@ background:linear-gradient(135deg,var(--wds-violet),var(--wds-cyan));color:#0a0d
 <span class="stat-pill">🔥 BPM 240</span>
 <span class="stat-pill">单难度挑战</span>
 <span class="stat-pill">Master 39</span>
+</div>
+</div>
+<div class="tap-hint">点击查看完整歌曲信息 →</div>
+</div>
+<!-- ═══ 第16首 すみません ═══ -->
+<div class="card sumimasen native even-book" onclick="openModal('sumimasen')">
+<div class="badge badge-sumimasen">🎵 even书下 · 官方收录</div>
+<div class="card-cover">
+<div class="card-cover-text">
+<div class="jp-title">すみません</div>
+<div class="cn-title">对不起 · even书下原创收录曲</div>
+<div class="voice-tag">知声（VoiSona）· 词：かみさん</div>
+</div>
+</div>
+<div class="card-body">
+<div class="track-name">すみません</div>
+<div class="track-sub">曲/编：MIMI · 画：ななみん_nanamin</div>
+<div class="card-stats">
+<span class="stat-pill">🔥 BPM 125</span>
+<span class="stat-pill">讽刺</span>
+<span class="stat-pill">Append 25</span>
 </div>
 </div>
 <div class="tap-hint">点击查看完整歌曲信息 →</div>
@@ -1185,6 +1234,66 @@ background:linear-gradient(135deg,var(--wds-violet),var(--wds-cyan));color:#0a0d
 <div class="preserve-note">SNAPSHOT 2026-11-01 · 即便游戏关服，这首歌依然在这里<br>Spooky Studio · 轴音旋律歌曲信息保管站</div>
 </div>
 </div>
+<!-- ═══ 第16首 すみません 模态框 ═══ -->
+<div class="modal-overlay" id="modal-sumimasen" onclick="closeOnBg(event,'sumimasen')">
+<div class="modal">
+<div class="modal-header">
+<h2 style="color:var(--sumimasen-soft);">歌曲信息</h2>
+<div class="jp-full" style="color:var(--sumimasen-soft);">すみません <span class="sumimasen-flag">even书下 · 官方收录</span></div>
+<button class="modal-close" onclick="closeModal('sumimasen')">×</button>
+</div>
+<div class="sumimasen-tag">🎵 even书下 · holy 官方收录 · 讽刺+抒情</div>
+<div class="translation-block sumimasen-tl">
+<div class="label">🇯🇵 标题含义</div>
+<div class="jp-text">すみません</div>
+<div class="cn-text">对不起 / 抱歉打扰了</div>
+<div class="note">既是道歉，也是对圈子乱象的独白。歌名贯穿全曲，既是自嘲也是请求。</div>
+</div>
+<div class="modal-section">
+<h3>创作署名</h3>
+<div class="credit-line"><span class="role">作词</span><span class="who">かみさん</span></div>
+<div class="credit-line"><span class="role">作曲 / 编曲</span><span class="who">MIMI</span></div>
+<div class="credit-line"><span class="role">演唱</span><span class="who">知声（VoiSona）</span></div>
+<div class="credit-line"><span class="role">曲绘</span><span class="who">ななみん_nanamin</span></div>
+<div class="credit-line"><span class="role">收录归属</span><span class="who">holyer / even书下</span></div>
+</div>
+<div class="modal-section">
+<h3>基本信息</h3>
+<div class="info-row"><span class="key">BPM</span><span class="val">125</span></div>
+<div class="info-row"><span class="key">时长</span><span class="val">2分45秒</span></div>
+<div class="info-row"><span class="key">收录游戏</span><span class="val">轴音旋律（Holyer）</span></div>
+<div class="info-row"><span class="key">收录状态</span><span class="val">已实装 · 官方收录</span></div>
+</div>
+<div class="modal-section">
+<h3>音游难度</h3>
+<div class="diff-row"><span class="diff-label">Easy</span><div class="diff-bar"><div class="diff-fill" style="width:15%;background:#5dcc5d;"></div></div><span class="diff-num" style="color:#5dcc5d;">4</span></div>
+<div class="diff-row"><span class="diff-label">Normal</span><div class="diff-bar"><div class="diff-fill" style="width:46%;background:#4ecdc4;"></div></div><span class="diff-num" style="color:#4ecdc4;">12</span></div>
+<div class="diff-row"><span class="diff-label">Hard</span><div class="diff-bar"><div class="diff-fill" style="width:62%;background:#f7c948;"></div></div><span class="diff-num" style="color:#f7c948;">16</span></div>
+<div class="diff-row"><span class="diff-label">Expert</span><div class="diff-bar"><div class="diff-fill" style="width:85%;background:#ff8c42;"></div></div><span class="diff-num" style="color:#ff8c42;">22</span></div>
+<div class="diff-row"><span class="diff-label">Master</span><div class="diff-bar"><div class="diff-fill" style="width:100%;background:#ff4757;"></div></div><span class="diff-num" style="color:#ff4757;">26</span></div>
+<div class="diff-row append"><span class="diff-label">Append<span class="append-badge">25</span></span><div class="diff-bar"><div class="diff-fill" style="width:96%;background:linear-gradient(90deg,var(--sumimasen-purple),var(--sumimasen-soft));"></div></div><span class="diff-num" style="color:var(--sumimasen-soft);">25</span></div>
+</div>
+<div class="modal-section">
+<h3>Tip</h3>
+<div class="quote" style="border-left-color:var(--sumimasen-purple);background:rgba(138,43,226,.05);">这首歌既讽刺了圈子的乱象，同时也是一首抒情曲。</div>
+</div>
+<div class="modal-section">
+<h3>收录说明</h3>
+<div class="quote" style="border-left-color:var(--sumimasen-purple);background:rgba(138,43,226,.05);">本曲为 holy 官方收录于 even书下 的原创曲目。歌词含对创作圈生态的批评，不点名、不消费具体个人，不美化、不煽动。署名分层：词 かみさん / 曲编 MIMI / 歌 知声 / 曲绘 ななみん_nanamin。</div>
+</div>
+<div class="modal-section">
+<h3>听感备注</h3>
+<div class="quote" style="border-left-color:var(--sumimasen-purple);background:rgba(138,43,226,.05);">125 BPM 钢琴驱动叙事，知声气声调法。批判段快嘴密节奏对应信息轰炸，副歌沉静留白。Append 25 低于 Master 26，复刻世界计划官方乱标风格。</div>
+</div>
+<div class="modal-section">
+<h3>歌词</h3>
+<a class="lyrics-link" href="https://h5.qzone.qq.com/universal-share/share?busi_data=%7B%22share_id%22:%2281496111-d6ae-11f1-80ca-525400694753%22,%22err_code%22:0,%22err_msg%22:%22%22,%22need_break%22:false,%22tips%22:%7B%7D,%22FeedActionDomainType%22:1,%22BannerType%22:0%7D&data=8N2khxg2GrEqA8vrgn9aitHgbzpLn6tSuWAJBv9ZCaYqEjeHKX4dkfJmSQPBoOaMU3PM1XTBEt31Xrxa5hCeW6wBMh49RN0DbAVyHY5oouN9tqUjJLcFfk0Zp8E_Rv3nIhlAvnzh7bZss_htTQ-PO2qJr1BwNTfbvggE5Rq32gduQhrAYFIUcuGOCKDs6RbShXZhP8wpwYqVLKv218xlTw&svctype=1&tempid=h5_feed&feed_action_domain_type=1&banner_type=0" target="_blank" rel="noopener noreferrer">
+📖 查看完整歌词（外部链接）
+</a>
+</div>
+<div class="preserve-note">SNAPSHOT 2026-11-02 · even书下 · 官方收录<br>消さないで 忘れないで 上書きしないで · 轴音旋律歌曲信息保管站</div>
+</div>
+</div>
 <!-- lwanna -->
 <div class="modal-overlay" id="modal-lwanna" onclick="closeOnBg(event,'lwanna')">
 <div class="modal">
@@ -1222,11 +1331,12 @@ background:linear-gradient(135deg,var(--wds-violet),var(--wds-cyan));color:#0a0d
 </div>
 <div class="modal-section">
 <h3>听感评价</h3>
-<div class="quote" style="border-left-color:var(--wds-cyan);background:rgba(94,224,255,.05);">Wds 联动的第一首敲门砖。真白一人包办词曲编，再拉上静香——两个真人声线叠在一起，放进轴音的轨道里居然毫不违和。Master 31 的难度曲线很友好，适合拿来热身找手感，但副歌那段三连音的密度会教你做人。</div>
+<div class="quote" style="border-left-color:var(--wds-cyan);background:rgba(94,224,255,.05);">Wds 联动的第一首敲门砖。真白一人包办词曲编，再拉上静香——两个真人声线——两个真人声线叠在一起，和虚拟声库区的曲子气质完全不一样。Master 31 的谱面设计偏"跟着人声走"，没有那种刻意的炫技段，更像是在配合演唱的呼吸感。</div>
 </div>
-<div class="preserve-note">SNAPSHOT 2026-11-01 · 即便游戏关服，这首歌依然在这里<br>Wds 梦想星座盘 × 轴音旋律 · 联动保管记录</div>
+<div class="preserve-note">SNAPSHOT 2026-11-02 · 联动收录 · Wds 梦想星座盘<br>轴音旋律歌曲信息保管站</div>
 </div>
 </div>
+
 <!-- dennou -->
 <div class="modal-overlay" id="modal-dennou" onclick="closeOnBg(event,'dennou')">
 <div class="modal">
@@ -1237,15 +1347,14 @@ background:linear-gradient(135deg,var(--wds-violet),var(--wds-cyan));color:#0a0d
 </div>
 <div class="wds-tag">🌌 联动收录 · Wds 梦想星座盘</div>
 <div class="translation-block wds-tl">
-<div class="label">🇯🇵 标题 · 意为"赛博奇观"</div>
+<div class="label">🇯🇵 标题含义</div>
 <div class="jp-text">電脳スペクタクル</div>
-<div class="cn-text">Cyber Spectacle · 赛博奇观</div>
-<div class="note">三个人声叠在一起，就是一场数字烟火。</div>
+<div class="cn-text">赛博奇观 / 电子奇观</div>
+<div class="note">三人共演——真白带上猫足蕾和阿岐留カミラ，把"赛博"这个词从概念变成声场。</div>
 </div>
 <div class="modal-section">
 <h3>创作署名 · 全员真人</h3>
-<div class="credit-line"><span class="role">作词 / 作曲 / 编曲</span><span class="who">志村真白（FirstCall）</span></div>
-<div class="credit-line"><span class="role">演唱</span><span class="who">志村真白 feat. 猫足蕾、阿岐留カミラ <span class="human-mark">真人×3</span></span></div>
+<div class="credit-line"><span class="role">演唱</span><span class="who">志村真白 feat. 猫足蕾、阿岐留カミラ <span class="human-mark">真人</span></span></div>
 <div class="credit-line"><span class="role">联动企划</span><span class="who">Wds 梦想星座盘 × 轴音旋律</span></div>
 </div>
 <div class="modal-section">
@@ -1256,19 +1365,20 @@ background:linear-gradient(135deg,var(--wds-violet),var(--wds-cyan));color:#0a0d
 </div>
 <div class="modal-section">
 <h3>音游难度</h3>
-<div class="diff-row"><span class="diff-label">Easy</span><div class="diff-bar"><div class="diff-fill" style="width:15%;background:#5dcc5d;"></div></div><span class="diff-num" style="color:#5dcc5d;">5</span></div>
-<div class="diff-row"><span class="diff-label">Normal</span><div class="diff-bar"><div class="diff-fill" style="width:42%;background:#4ecdc4;"></div></div><span class="diff-num" style="color:#4ecdc4;">14</span></div>
-<div class="diff-row"><span class="diff-label">Hard</span><div class="diff-bar"><div class="diff-fill" style="width:61%;background:#f7c948;"></div></div><span class="diff-num" style="color:#f7c948;">20</span></div>
-<div class="diff-row"><span class="diff-label">Expert</span><div class="diff-bar"><div class="diff-fill" style="width:85%;background:#ff8c42;"></div></div><span class="diff-num" style="color:#ff8c42;">28</span></div>
+<div class="diff-row"><span class="diff-label">Easy</span><div class="diff-bar"><div class="diff-fill" style="width:19%;background:#5dcc5d;"></div></div><span class="diff-num" style="color:#5dcc5d;">6</span></div>
+<div class="diff-row"><span class="diff-label">Normal</span><div class="diff-bar"><div class="diff-fill" style="width:42%;background:#4ecdc4;"></div></div><span class="diff-num" style="color:#4ecdc4;">13</span></div>
+<div class="diff-row"><span class="diff-label">Hard</span><div class="diff-bar"><div class="diff-fill" style="width:65%;background:#f7c948;"></div></div><span class="diff-num" style="color:#f7c948;">20</span></div>
+<div class="diff-row"><span class="diff-label">Expert</span><div class="diff-bar"><div class="diff-fill" style="width:84%;background:#ff8c42;"></div></div><span class="diff-num" style="color:#ff8c42;">26</span></div>
 <div class="diff-row"><span class="diff-label">Master</span><div class="diff-bar"><div class="diff-fill" style="width:100%;background:#ff4757;"></div></div><span class="diff-num" style="color:#ff4757;">33</span></div>
 </div>
 <div class="modal-section">
-<h3>联动意义</h3>
-<div class="quote" style="border-left-color:var(--wds-violet);background:rgba(157,123,255,.06);">这是轴音旋律第一次把"真人歌手 × 虚拟企划"放进同一张谱面表里。志村真白一人包办词曲编，再拉上猫足蕾、阿岐留カミラ三人共演——Wds 的星座盘，转到了轴音的三面轨道上。</div>
+<h3>听感评价</h3>
+<div class="quote" style="border-left-color:var(--wds-violet);background:rgba(157,123,255,.05);">三人共演的赛博奇观——真白的声线做主线，猫足蕾负责高音切入，阿岐留カミラ压低音铺底。Master 33 的交互段把三个人声轨的交替用手感翻译出来了：你以为在跟一条线，其实同时在追三条。Wds 联动两首曲子风格差异很大，这首比 l Wanna 更"满"、更密，适合喜欢信息量的玩家。</div>
 </div>
-<div class="preserve-note">SNAPSHOT 2026-11-01 · 即便游戏关服，这首歌依然在这里<br>Wds 梦想星座盘 × 轴音旋律 · 联动保管记录</div>
+<div class="preserve-note">SNAPSHOT 2026-11-02 · 联动收录 · Wds 梦想星座盘<br>轴音旋律歌曲信息保管站</div>
 </div>
 </div>
+
 <!-- snooze -->
 <div class="modal-overlay" id="modal-snooze" onclick="closeOnBg(event,'snooze')">
 <div class="modal">
@@ -1277,84 +1387,88 @@ background:linear-gradient(135deg,var(--wds-violet),var(--wds-cyan));color:#0a0d
 <div class="jp-full" style="color:var(--snooze-cyan);">snooze <span class="custom-flag">社区自制 · 官方收录</span></div>
 <button class="modal-close" onclick="closeModal('snooze')">×</button>
 </div>
-<div class="official-tag">⭐ 社区投稿 → 官方收录 Master 谱面</div>
+<div class="official-tag">⭐ HoloChed 内测 · 官方收录 Master 谱面</div>
 <div class="translation-block snooze-tl">
-<div class="label">🎵 曲目信息</div>
+<div class="label">🇯🇵 收录说明</div>
 <div class="jp-text">snooze</div>
-<div class="cn-text">初音未来 · Wotaku</div>
-<div class="note">无日文译名。民间曾有「スノス」音译方案，但未传达"贪睡/不愿醒来"的核心意象。</div>
+<div class="cn-text">初音未来 · Wotaku · 社区自制谱面</div>
+<div class="note">谱师 Yoternr 投稿，经 HoloChed 内测审核后官方收录。反手键设计是核心特色。</div>
 </div>
 <div class="modal-section">
 <h3>创作署名</h3>
-<div class="credit-line"><span class="role">歌手</span><span class="who">初音未来</span></div>
-<div class="credit-line"><span class="role">P主</span><span class="who">Wotaku</span></div>
+<div class="credit-line"><span class="role">原曲</span><span class="who">snooze · 初音未来</span></div>
+<div class="credit-line"><span class="role">原曲 P主</span><span class="who">Wotaku</span></div>
 <div class="credit-line"><span class="role">谱面作者</span><span class="who">Yoternr（HoloChed 内测谱师）</span></div>
+<div class="credit-line"><span class="role">收录途径</span><span class="who">社区自制 → 官方收录</span></div>
 </div>
 <div class="modal-section">
 <h3>基本信息</h3>
-<div class="info-row"><span class="key">谱面状态</span><span class="val">社区投稿 → 官方收录 Master</span></div>
 <div class="info-row"><span class="key">时长</span><span class="val">2分32秒</span></div>
+<div class="info-row"><span class="key">谱面特色</span><span class="val">反手键设计 · 交互密度高</span></div>
 <div class="info-row"><span class="key">收录游戏</span><span class="val">轴音旋律（Holyer）</span></div>
 </div>
 <div class="modal-section">
-<h3>音游难度 · 平滑曲线</h3>
-<div class="diff-row"><span class="diff-label">Easy</span><div class="diff-bar"><div class="diff-fill" style="width:22%;background:#5dcc5d;"></div></div><span class="diff-num" style="color:#5dcc5d;">7</span></div>
-<div class="diff-row"><span class="diff-label">Normal</span><div class="diff-bar"><div class="diff-fill" style="width:47%;background:#4ecdc4;"></div></div><span class="diff-num" style="color:#4ecdc4;">15</span></div>
-<div class="diff-row"><span class="diff-label">Hard</span><div class="diff-bar"><div class="diff-fill" style="width:66%;background:#f7c948;"></div></div><span class="diff-num" style="color:#f7c948;">21</span></div>
-<div class="diff-row"><span class="diff-label">Expert</span><div class="diff-bar"><div class="diff-fill" style="width:90%;background:#ff8c42;"></div></div><span class="diff-num" style="color:#ff8c42;">29</span></div>
-<div class="diff-row"><span class="diff-label">Master</span><div class="diff-bar"><div class="diff-fill" style="width:100%;background:linear-gradient(90deg,#00d4ff,#7c3aed);"></div></div><span class="diff-num" style="color:var(--snooze-violet);">32</span></div>
+<h3>音游难度</h3>
+<div class="diff-row"><span class="diff-label">Easy</span><div class="diff-bar"><div class="diff-fill" style="width:19%;background:#5dcc5d;"></div></div><span class="diff-num" style="color:#5dcc5d;">6</span></div>
+<div class="diff-row"><span class="diff-label">Normal</span><div class="diff-bar"><div class="diff-fill" style="width:39%;background:#4ecdc4;"></div></div><span class="diff-num" style="color:#4ecdc4;">12</span></div>
+<div class="diff-row"><span class="diff-label">Hard</span><div class="diff-bar"><div class="diff-fill" style="width:58%;background:#f7c948;"></div></div><span class="diff-num" style="color:#f7c948;">18</span></div>
+<div class="diff-row"><span class="diff-label">Expert</span><div class="diff-bar"><div class="diff-fill" style="width:81%;background:#ff8c42;"></div></div><span class="diff-num" style="color:#ff8c42;">25</span></div>
+<div class="diff-row"><span class="diff-label">Master</span><div class="diff-bar"><div class="diff-fill" style="width:100%;background:var(--snooze-cyan);"></div></div><span class="diff-num" style="color:var(--snooze-cyan);">32</span></div>
 </div>
 <div class="modal-section">
-<h3>谱面设计特色</h3>
-<div class="quote" style="border-left-color:var(--snooze-cyan);background:rgba(0,212,255,.05);">
-<strong style="color:var(--snooze-cyan);">反手设计：</strong>大量反手 note 嵌入音乐转折点，玩家手指随旋律"被迫"换位的瞬间，体感与音乐情绪同步。<br><br>
-<strong style="color:var(--snooze-violet);">难度曲线：</strong>7→15→21→29→32，每档均匀加码，平滑过渡无跳崖。社区实测：上手好评如潮。<br><br>
-<strong style="color:var(--accent-warm);">作者寄语：</strong>"排谱的人终于变成了被收录的人。"<br>
-<span style="font-size:.65rem;opacity:.7;">—— Yoternr</span>
+<h3>谱面设计亮点</h3>
+<div class="quote" style="border-left-color:var(--snooze-cyan);background:rgba(0,212,255,.05);">Yoternr 的谱面核心卖点是反手设计——大量 note 落在非惯用手位，强迫你换手而不是硬扛。Master 32 的难点不在速度，在于"你的大脑想往这边走但手已经在那边了"。社区自制能被官方收录，说明这个谱面的质量经得起审核。</div>
+</div>
+<div class="preserve-note">SNAPSHOT 2026-11-02 · 社区自制 · 官方收录<br>轴音旋律歌曲信息保管站</div>
 </div>
 </div>
-<div class="modal-section">
-<h3>收录历程</h3>
-<div class="info-row"><span class="key">阶段一</span><span class="val">HoloChed 内测排谱</span></div>
-<div class="info-row"><span class="key">阶段二</span><span class="val">社区投稿（Yoternr）· 玩家实测好评</span></div>
-<div class="info-row"><span class="key">阶段三</span><span class="val">官方选中 · Master 32 谱面正式收录</span></div>
+
+</div><!-- /page wrap -->
+
+<div class="footer">
+<p>Spooky Studio · 轴音旋律歌曲信息保管站</p>
+<p>Even 是三天炸开的星，etta 是被时间慢慢展开的焰</p>
 </div>
-<div class="preserve-note">SNAPSHOT 2026-11-01 · 即便游戏关服，这首歌依然在这里<br>社区自制 · 轴音旋律歌曲信息保管站</div>
-</div>
-</div>
+
 <script>
-function filterBy(btn,type){
-document.querySelectorAll('.filterbtn').forEach(function(b){b.classList.remove('active');});
-btn.classList.add('active');
-if(type==='all'){
-document.querySelectorAll('.section').forEach(function(s){s.style.display='';});
-window.scrollTo({top:0,behavior:'smooth'});
-return;
+function filterBy(btn, type) {
+  document.querySelectorAll('.filterbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.section').forEach(sec => {
+    if (type === 'all') { sec.style.display = ''; return; }
+    if (type === 'native' && sec.id === 'sect-native') { sec.style.display = ''; }
+    else if (type === 'wds' && sec.id === 'sect-wds') { sec.style.display = ''; }
+    else if (type === 'custom' && sec.id === 'sect-custom') { sec.style.display = ''; }
+    else { sec.style.display = 'none'; }
+  });
 }
-document.querySelectorAll('.section').forEach(function(s){
-s.style.display = s.id==='sect-'+type ? '' : 'none';
-});
+
+function openModal(id) {
+  const m = document.getElementById('modal-' + id);
+  if (m) m.classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
-function openModal(who){
-document.getElementById('modal-'+who).classList.add('active');
-document.body.style.overflow='hidden';
+
+function closeModal(id) {
+  const m = document.getElementById('modal-' + id);
+  if (m) m.classList.remove('active');
+  document.body.style.overflow = '';
 }
-function closeModal(who){
-document.getElementById('modal-'+who).classList.remove('active');
-document.body.style.overflow='';
+
+function closeOnBg(e, id) {
+  if (e.target.id === 'modal-' + id) closeModal(id);
 }
-function closeOnBg(e,who){
-if(e.target.id==='modal-'+who) closeModal(who);
-}
-document.addEventListener('keydown',function(e){
-if(e.key==='Escape'){
-['etta','even','commute','send','bling','vocaloidtall','haruhikage','hakenohana','ending','hai','lwanna','dennou','snooze','makenew','commuteremix'].forEach(closeModal);
-}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.active').forEach(function(m) {
+      m.classList.remove('active');
+    });
+    document.body.style.overflow = '';
+  }
 });
 </script>
-<div class="footer">
-SNAPSHOT 2026-11-01 · 收录 15 首 · 离线单文件，双击即开<br>
-双子声库原生曲 × Wds 梦想星座盘联动 × 社区自制收录 · 即便游戏关服，这些歌依然在这里
-</div>
+
 </body>
 </html>
+
